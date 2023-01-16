@@ -1,8 +1,9 @@
 require('dotenv').config()
 const cors = require('cors')
 const express = require('express')
-let genreRoutes = require('./routes/genre')
+let s3Routes = require('./routes/s3')
 let afRoutes = require('./routes/audio-f')
+let genreRoutes = require('./routes/genre')
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 
 app.use('/genre', genreRoutes)
 app.use('/audio-f', afRoutes)
+app.use('/s3', s3Routes)
 
 app.get('*', (req, res) => {
     res.status(404).json({
