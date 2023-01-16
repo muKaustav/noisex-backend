@@ -55,7 +55,6 @@ let downloadFromS3 = async (req, res) => {
     let params = {
         Bucket: process.env.S3_BUCKET_NAME,
         Key: fileName,
-        ContentType: req.file.mimetype,
         Expires: 60,
         ACL: 'public-read',
         ResponseContentDisposition: 'inline',
