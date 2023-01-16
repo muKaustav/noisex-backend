@@ -25,7 +25,12 @@ let uploadToS3 = async (req, res) => {
     let params = {
         Bucket: process.env.S3_BUCKET_NAME,
         Key: path.basename(filePath),
-        Body: fileStream
+        Body: fileStream,
+        ContentType: req.file.mimetype,
+        Expires: 60,
+        ACL: 'public-read',
+        ResponseContentDisposition: 'inline',
+        ResponseContentType: req.file.mimetype
     }
 
     s3.upload(params, async (err, result) => {
@@ -49,7 +54,12 @@ let downloadFromS3 = async (req, res) => {
 
     let params = {
         Bucket: process.env.S3_BUCKET_NAME,
-        Key: fileName
+        Key: fileName,
+        ContentType: req.file.mimetype,
+        Expires: 60,
+        ACL: 'public-read',
+        ResponseContentDisposition: 'inline',
+        ResponseContentType: req.file.mimetype
     }
 
     s3.getObject(params, (err, result) => {
@@ -81,7 +91,7 @@ let deleteFromS3 = async (req, res) => {
             console.log("S3 Response", result)
 
             res.send({
-                message: "File delted successfully",
+                message: "File deleted successfully",
                 data: result
             })
         }

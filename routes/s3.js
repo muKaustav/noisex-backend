@@ -1,7 +1,18 @@
 const express = require('express')
 var multer = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var path = require('path')
 const s3Controller = require('../controllers/s3')
+
+let storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
+    }
+})
+
+let upload = multer({ storage: storage })
 
 const router = express.Router()
 
