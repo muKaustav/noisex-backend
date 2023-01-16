@@ -15,6 +15,7 @@ AWS.config.update({
 const s3 = new AWS.S3({ signatureVersion: 'v4' })
 
 let uploadToS3 = async (req, res) => {
+    console.log("frontend called me")
     let filePath = req.file.path
     let fileStream = fs.createReadStream(filePath)
 
