@@ -55,10 +55,7 @@ let downloadFromS3 = async (req, res) => {
     let params = {
         Bucket: process.env.S3_BUCKET_NAME,
         Key: fileName,
-        Expires: 60,
-        ACL: 'public-read',
         ResponseContentDisposition: 'inline',
-        ResponseContentType: req.file.mimetype
     }
 
     s3.getObject(params, (err, result) => {
