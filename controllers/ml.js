@@ -1,10 +1,10 @@
 require('dotenv').config()
 const axios = require('axios')
 
-let genre_classifier = (req, res) => {
+let ml = (req, res) => {
     var config = {
         method: 'get',
-        url: process.env.GC_MACHINE + req.query.url,
+        url: process.env.AF_MACHINE + req.query.url,
         headers: {}
     }
 
@@ -19,4 +19,4 @@ let genre_classifier = (req, res) => {
         })
 }
 
-module.exports = { genre_classifier }
+module.exports = { ml }
