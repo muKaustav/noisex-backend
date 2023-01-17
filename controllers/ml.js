@@ -4,7 +4,7 @@ const axios = require('axios')
 let ml = (req, res) => {
     var config = {
         method: 'get',
-        url: process.env.AF_MACHINE + req.query.url,
+        url: process.env.ML_MACHINE + req.query.url,
         headers: {}
     }
 
