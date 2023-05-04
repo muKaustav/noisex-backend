@@ -11,7 +11,7 @@ AWS.config.update({
     region: process.env.S3_REGION,
     signatureVersion: 'v4'
 })
-
+    
 const s3 = new AWS.S3({ signatureVersion: 'v4' })
 
 let uploadToS3 = async (req, res) => {
