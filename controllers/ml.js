@@ -1,10 +1,10 @@
 require('dotenv').config()
 const axios = require('axios')
 
-let ml = (req, res) => {
+let genre = (req, res) => {
     var config = {
         method: 'get',
-        url: process.env.ML_MACHINE + req.query.url,
+        url: process.env.GENRE_MACHINE + req.query.key,
         headers: {}
     }
 
@@ -19,4 +19,22 @@ let ml = (req, res) => {
         })
 }
 
-module.exports = { ml }
+let instrument = (req, res) => {
+    var config = {
+        method: 'get',
+        url: process.env.INSTRUMENT_MACHINE + req.query.key,
+        headers: {}
+    }
+
+    axios(config)
+        .then((response) => {
+            console.log(JSON.stringify(response.data))
+            res.status(200).send(response.data)
+        })
+        .catch((error) => {
+            console.log(error)
+            res.status(400).send(error)
+        })
+}
+
+module.exports = { genre, instrument }
