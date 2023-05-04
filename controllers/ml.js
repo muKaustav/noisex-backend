@@ -20,6 +20,7 @@ let genre = (req, res) => {
 }
 
 let instrument = (req, res) => {
+    console.log(req.query.key)
     var config = {
         method: 'get',
         url: process.env.INSTRUMENT_MACHINE + req.query.key,
