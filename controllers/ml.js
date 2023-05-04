@@ -11,7 +11,7 @@ let genre = (req, res) => {
     axios(config)
         .then((response) => {
             console.log(JSON.stringify(response.data))
-            res.status(200).send(response.data)
+            res.status(200).send({ genre: response.data })
         })
         .catch((error) => {
             console.log(error)
@@ -30,7 +30,7 @@ let instrument = (req, res) => {
     axios(config)
         .then((response) => {
             console.log(JSON.stringify(response.data))
-            res.status(200).send(response.data)
+            res.status(200).send({ intruments: response.data })
         })
         .catch((error) => {
             console.log(error)
